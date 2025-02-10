@@ -1,3 +1,4 @@
+import 'package:blooddonation/view/addscreen.dart';
 import 'package:blooddonation/view/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Blood Donation',
-      home: Homescreen(),
+      home:Addscreen(),
     );
   }
 }

@@ -1,4 +1,5 @@
 class Usermodel {
+  int?id;
   String? name;
   String? age;
   String? bloodGroup;
@@ -7,7 +8,7 @@ class Usermodel {
   String? phoneNumber;
 
   Usermodel(
-      {required this.name,
+      {this.id,required this.name,
       required this.age,
       required this.bloodGroup,
       required this.phoneNumber,
@@ -16,6 +17,7 @@ class Usermodel {
 
   factory Usermodel.fromBase(Map<String, dynamic> base) {
     return Usermodel(
+        id: base['id'],
         name: base['name'],
         age: base['age'],
         bloodGroup: base['bloodGroup'],
@@ -25,7 +27,7 @@ class Usermodel {
   }
 
   Map<String, dynamic> toBase() {
-    return {
+    return {  
       'name': name,
       'age': age,
       'bloodGroup': bloodGroup,
