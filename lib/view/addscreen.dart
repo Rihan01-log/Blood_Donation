@@ -12,16 +12,13 @@ class Addscreen extends StatefulWidget {
 }
 
 class _AddscreenState extends State<Addscreen> {
-  TextEditingController name = TextEditingController();
-
-  TextEditingController age = TextEditingController();
-
-  TextEditingController place = TextEditingController();
-
-  TextEditingController phoneNumber = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController name = TextEditingController();
+    TextEditingController age = TextEditingController();
+    TextEditingController place = TextEditingController();
+    TextEditingController phoneNumber = TextEditingController();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(8.0),
