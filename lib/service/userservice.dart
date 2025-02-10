@@ -24,4 +24,22 @@ class Userservice {
       log('error in adding :$e');
     }
   }
+
+  Future<void> upadateData(Usermodel data, int id) async {
+    try {
+      await bloodDonationData.update(data.toBase()).eq('id', id);
+      getFromDatabase();
+    } catch (e) {
+      log('error in updating:$e');
+    }
+  }
+
+  Future<void> deleteFromBase(int id) async {
+    try {
+      await bloodDonationData.delete().eq('id', id);
+      getFromDatabase();
+    } catch (e) {
+      log('Deleting error frombase:$e');
+    }
+  }
 }
