@@ -1,8 +1,24 @@
+import 'package:blooddonation/controller/userprovider.dart';
+import 'package:blooddonation/model/usermodel.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 
-class Addscreen extends StatelessWidget {
-  const Addscreen({super.key});
+class Addscreen extends StatefulWidget {
+  Addscreen({super.key});
+
+  @override
+  State<Addscreen> createState() => _AddscreenState();
+}
+
+class _AddscreenState extends State<Addscreen> {
+  TextEditingController name = TextEditingController();
+
+  TextEditingController age = TextEditingController();
+
+  TextEditingController place = TextEditingController();
+
+  TextEditingController phoneNumber = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -18,23 +34,34 @@ class Addscreen extends StatelessWidget {
             ),
             Gap(10),
             TextField(
+              controller: name,
               decoration: InputDecoration(labelText: 'Name'),
             ),
             Gap(10),
             TextField(
+              controller: age,
               decoration: InputDecoration(labelText: 'Age'),
             ),
             Gap(10),
             TextField(
+              controller: phoneNumber,
               decoration: InputDecoration(labelText: 'Phone number'),
             ),
             Gap(10),
             TextField(
+              controller: place,
               decoration: InputDecoration(labelText: 'Place'),
             ),
             Gap(10),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Provider.of<Userprovider>(context, listen: false).adddonor(
+                    Usermodel(
+                        name: name.text,
+                        age: age.text,
+                        phoneNumber: phoneNumber.text,
+                        place: place.text));
+              },
               child: Text('Submit'),
             )
           ],

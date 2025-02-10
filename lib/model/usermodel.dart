@@ -10,10 +10,10 @@ class Usermodel {
   Usermodel(
       {this.id,required this.name,
       required this.age,
-      required this.bloodGroup,
+       this.bloodGroup,
       required this.phoneNumber,
       required this.place,
-      required this.image});
+      this.image});
 
   factory Usermodel.fromBase(Map<String, dynamic> base) {
     return Usermodel(
