@@ -12,7 +12,6 @@ class Addscreen extends StatefulWidget {
 }
 
 class _AddscreenState extends State<Addscreen> {
-
   @override
   Widget build(BuildContext context) {
     TextEditingController name = TextEditingController();
@@ -40,6 +39,20 @@ class _AddscreenState extends State<Addscreen> {
               decoration: InputDecoration(labelText: 'Age'),
             ),
             Gap(10),
+            Consumer<Userprovider>(
+              builder: (context, drop, child) => DropdownButton(
+                hint: Text('Select blood your group'),
+                value: drop.newvalue,
+                isExpanded: true,
+                items: drop.bloodGroup.map((item) {
+                  return DropdownMenuItem<String>(
+                      value: item, child: Text(item));
+                }).toList(),
+                onChanged: (value) {
+                  drop.serDropdown(value!);
+                },
+              ),
+            ),
             TextField(
               controller: phoneNumber,
               decoration: InputDecoration(labelText: 'Phone number'),
@@ -50,16 +63,21 @@ class _AddscreenState extends State<Addscreen> {
               decoration: InputDecoration(labelText: 'Place'),
             ),
             Gap(10),
-            ElevatedButton(
-              onPressed: () {
-                Provider.of<Userprovider>(context, listen: false).adddonor(
-                    Usermodel(
-                        name: name.text,
-                        age: age.text,
-                        phoneNumber: phoneNumber.text,
-                        place: place.text));
-              },
-              child: Text('Submit'),
+            Consumer<Userprovider>(
+              builder: (context, value, child) => ElevatedButton(
+                onPressed: () {
+                  value.adddonor(Usermodel(
+                      name: name.text,
+                      age: age.text,
+                      phoneNumber: phoneNumber.text,
+                      place: place.text,
+                      bloodGroup: value.newvalue));
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text('Donor Added')));
+                  Navigator.pop(context);
+                },
+                child: Text('Submit'),
+              ),
             )
           ],
         ),

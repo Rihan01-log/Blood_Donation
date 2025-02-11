@@ -1,6 +1,7 @@
 import 'package:blooddonation/controller/userprovider.dart';
 import 'package:blooddonation/model/usermodel.dart';
 import 'package:blooddonation/view/addscreen.dart';
+import 'package:blooddonation/view/updatepage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,14 +36,29 @@ class _HomescreenState extends State<Homescreen> {
               itemCount: value.donor.length,
               itemBuilder: (context, index) {
                 final data = value.donor[index];
+                // final id = data.id;
                 return ListTile(
                   title: Text(data.name!),
-                  subtitle: Text(data.age!),
+                  subtitle: Text(data.bloodGroup!),
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      IconButton(onPressed: () {}, icon: Icon(Icons.edit)),
-                      IconButton(onPressed: () {}, icon: Icon(Icons.delete))
+                      IconButton(
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Updatepage(),
+                                ));
+                          },
+                          icon: Icon(Icons.edit)),
+                      IconButton(
+                          onPressed: () {
+                            value.deletingData(data.id!);
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Donor data deleted')));
+                          },
+                          icon: Icon(Icons.delete))
                     ],
                   ),
                 );
