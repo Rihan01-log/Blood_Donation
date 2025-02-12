@@ -36,7 +36,7 @@ class _HomescreenState extends State<Homescreen> {
               itemCount: value.donor.length,
               itemBuilder: (context, index) {
                 final data = value.donor[index];
-                // final id = data.id;
+                final id = data.id;
                 return ListTile(
                   title: Text(data.name!),
                   subtitle: Text(data.bloodGroup!),
@@ -48,7 +48,14 @@ class _HomescreenState extends State<Homescreen> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => Updatepage(),
+                                  builder: (context) => Updatepage(
+                                      id: id,
+                                      name: data.name,
+                                      age: data.age,
+                                      bloodGroup: data.bloodGroup,
+                                      place: data.place,
+                                      phoneNumber: data.phoneNumber),
+                                      
                                 ));
                           },
                           icon: Icon(Icons.edit)),

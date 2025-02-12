@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(colorSchemeSeed: Colors.pinkAccent),
       title: 'Blood Donation',
       home: Homescreen(),
     );

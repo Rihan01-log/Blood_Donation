@@ -1,5 +1,6 @@
 import 'package:blooddonation/controller/userprovider.dart';
 import 'package:blooddonation/model/usermodel.dart';
+import 'package:blooddonation/view/viewscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
@@ -24,9 +25,13 @@ class _AddscreenState extends State<Addscreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
-              radius: 60,
-              backgroundColor: Colors.black,
+            InkWell(
+              onTap: () {
+              
+              },
+              child: CircleAvatar(
+                radius: 60,
+              ),
             ),
             Gap(10),
             TextField(

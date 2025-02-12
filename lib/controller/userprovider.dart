@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-
 import 'package:blooddonation/model/usermodel.dart';
 import 'package:blooddonation/service/userservice.dart';
 import 'package:flutter/foundation.dart';
