@@ -31,45 +31,48 @@ class _HomescreenState extends State<Homescreen> {
               ));
         },
       ),
-      body: Consumer<Userprovider>(
-          builder: (context, value, child) => ListView.builder(
-              itemCount: value.donor.length,
-              itemBuilder: (context, index) {
-                final data = value.donor[index];
-                final id = data.id;
-                return ListTile(
-                  title: Text(data.name!),
-                  subtitle: Text(data.bloodGroup!),
-                  trailing: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => Updatepage(
-                                      id: id,
-                                      name: data.name,
-                                      age: data.age,
-                                      bloodGroup: data.bloodGroup,
-                                      place: data.place,
-                                      phoneNumber: data.phoneNumber),
-                                      
-                                ));
-                          },
-                          icon: Icon(Icons.edit)),
-                      IconButton(
-                          onPressed: () {
-                            value.deletingData(data.id!);
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Donor data deleted')));
-                          },
-                          icon: Icon(Icons.delete))
-                    ],
-                  ),
-                );
-              })),
+      body: RefreshIndicator(
+        onRefresh: () => Provider.of<Userprovider>(context).getdata(),
+        child: Consumer<Userprovider>(
+            builder: (context, value, child) => ListView.builder(
+                itemCount: value.donor.length,
+                itemBuilder: (context, index) {
+                  final data = value.donor[index];
+                  final id = data.id;
+                  return ListTile(
+                    title: Text(data.name!),
+                    subtitle: Text(data.bloodGroup??'unknown'),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Updatepage(
+                                        id: id,
+                                        name: data.name,
+                                        age: data.age,
+                                        bloodGroup: data.bloodGroup,
+                                        place: data.place,
+                                        phoneNumber: data.phoneNumber),
+                                  ));
+                            },
+                            icon: Icon(Icons.edit)),
+                        IconButton(
+                            onPressed: () {
+                              value.deletingData(data.id!);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text('Donor data deleted')));
+                            },
+                            icon: Icon(Icons.delete))
+                      ],
+                    ),
+                  );
+                })),
+      ),
     );
   }
 }

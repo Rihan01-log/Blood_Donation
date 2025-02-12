@@ -38,6 +38,7 @@ class Userprovider extends ChangeNotifier {
   Future<void> updateData(Usermodel data, int id) async {
     try {
       await user.upadateData(data, id);
+      getdata();
       notifyListeners();
       log('updated in provider');
     } catch (e) {
