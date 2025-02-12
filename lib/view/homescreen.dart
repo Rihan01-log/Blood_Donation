@@ -39,36 +39,39 @@ class _HomescreenState extends State<Homescreen> {
                 itemBuilder: (context, index) {
                   final data = value.donor[index];
                   final id = data.id;
-                  return ListTile(
-                    title: Text(data.name!),
-                    subtitle: Text(data.bloodGroup??'unknown'),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Updatepage(
-                                        id: id,
-                                        name: data.name,
-                                        age: data.age,
-                                        bloodGroup: data.bloodGroup,
-                                        place: data.place,
-                                        phoneNumber: data.phoneNumber),
-                                  ));
-                            },
-                            icon: Icon(Icons.edit)),
-                        IconButton(
-                            onPressed: () {
-                              value.deletingData(data.id!);
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text('Donor data deleted')));
-                            },
-                            icon: Icon(Icons.delete))
-                      ],
+                  return Card(
+                    child: ListTile(
+                      leading: CircleAvatar(),
+                      title: Text(data.name!),
+                      subtitle: Text(data.bloodGroup ?? 'unknown'),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Updatepage(
+                                          id: id,
+                                          name: data.name,
+                                          age: data.age,
+                                          bloodGroup: data.bloodGroup,
+                                          place: data.place,
+                                          phoneNumber: data.phoneNumber),
+                                    ));
+                              },
+                              icon: Icon(Icons.edit)),
+                          IconButton(
+                              onPressed: () {
+                                value.deletingData(data.id!);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                        content: Text('Donor data deleted')));
+                              },
+                              icon: Icon(Icons.delete))
+                        ],
+                      ),
                     ),
                   );
                 })),

@@ -20,15 +20,14 @@ class _AddscreenState extends State<Addscreen> {
     TextEditingController place = TextEditingController();
     TextEditingController phoneNumber = TextEditingController();
     return Scaffold(
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             InkWell(
-              onTap: () {
-              
-              },
+              onTap: () {},
               child: CircleAvatar(
                 radius: 60,
               ),
