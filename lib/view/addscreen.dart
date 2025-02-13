@@ -1,3 +1,4 @@
+import 'package:blooddonation/controller/imageprovider.dart';
 import 'package:blooddonation/controller/userprovider.dart';
 import 'package:blooddonation/model/usermodel.dart';
 import 'package:blooddonation/view/viewscreen.dart';
@@ -15,6 +16,7 @@ class Addscreen extends StatefulWidget {
 class _AddscreenState extends State<Addscreen> {
   @override
   Widget build(BuildContext context) {
+    final img = Provider.of<Imageprovider>(context);
     TextEditingController name = TextEditingController();
     TextEditingController age = TextEditingController();
     TextEditingController place = TextEditingController();
@@ -26,10 +28,20 @@ class _AddscreenState extends State<Addscreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            InkWell(
-              onTap: () {},
+            GestureDetector(
+              onTap: () {
+                img.pickImages();
+              },
               child: CircleAvatar(
                 radius: 60,
+                backgroundImage:
+                    img.imgUrl != null ? NetworkImage(img.imgUrl!) : null,
+                child: img.imgUrl == null
+                    ? Icon(
+                        Icons.person,
+                        color: Colors.grey,
+                      )
+                    : null,
               ),
             ),
             Gap(10),
@@ -67,10 +79,11 @@ class _AddscreenState extends State<Addscreen> {
               decoration: InputDecoration(labelText: 'Place'),
             ),
             Gap(10),
-            Consumer<Userprovider>(
-              builder: (context, value, child) => ElevatedButton(
+            Consumer2<Userprovider, Imageprovider>(
+              builder: (context, value, image, child) => ElevatedButton(
                 onPressed: () {
                   value.adddonor(Usermodel(
+                      image: image.imagePath,
                       name: name.text,
                       age: age.text,
                       phoneNumber: phoneNumber.text,

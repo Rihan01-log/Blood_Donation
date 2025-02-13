@@ -1,3 +1,4 @@
+import 'package:blooddonation/controller/imageprovider.dart';
 import 'package:blooddonation/controller/userprovider.dart';
 import 'package:blooddonation/model/usermodel.dart';
 import 'package:blooddonation/view/addscreen.dart';
@@ -33,15 +34,17 @@ class _HomescreenState extends State<Homescreen> {
       ),
       body: RefreshIndicator(
         onRefresh: () => Provider.of<Userprovider>(context).getdata(),
-        child: Consumer<Userprovider>(
-            builder: (context, value, child) => ListView.builder(
+        child: Consumer2<Userprovider, Imageprovider>(
+            builder: (context, value, img, child) => ListView.builder(
                 itemCount: value.donor.length,
                 itemBuilder: (context, index) {
                   final data = value.donor[index];
                   final id = data.id;
                   return Card(
                     child: ListTile(
-                      leading: CircleAvatar(),
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(data.image ?? 'unknown'),
+                      ),
                       title: Text(data.name!),
                       subtitle: Text(data.bloodGroup ?? 'unknown'),
                       trailing: Row(
@@ -53,6 +56,7 @@ class _HomescreenState extends State<Homescreen> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => Updatepage(
+                                          image: data.image,
                                           id: id,
                                           name: data.name,
                                           age: data.age,

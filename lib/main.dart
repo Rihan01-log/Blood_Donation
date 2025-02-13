@@ -1,3 +1,4 @@
+import 'package:blooddonation/controller/imageprovider.dart';
 import 'package:blooddonation/controller/userprovider.dart';
 import 'package:blooddonation/view/homescreen.dart';
 import 'package:blooddonation/view/login.dart';
@@ -15,6 +16,9 @@ void main() async {
   runApp(
     MultiProvider(providers: [
       ChangeNotifierProvider(create: (context) => Userprovider()),
+      ChangeNotifierProvider(
+        create: (context) => Imageprovider(),
+      )
     ], child: MyApp()),
   );
 }
@@ -27,7 +31,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(colorSchemeSeed: Colors.pinkAccent),
       title: 'Blood Donation',
-      home: Login(),
+      home: Homescreen(),
     );
   }
 }

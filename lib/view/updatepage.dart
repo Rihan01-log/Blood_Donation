@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:blooddonation/controller/imageprovider.dart';
 import 'package:blooddonation/controller/userprovider.dart';
 import 'package:blooddonation/model/usermodel.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +22,7 @@ class Updatepage extends StatefulWidget {
       required this.bloodGroup,
       required this.place,
       required this.id,
-      this.image,
+      required this.image,
       required this.phoneNumber});
 
   @override
@@ -36,6 +35,7 @@ class _UpdatepageState extends State<Updatepage> {
   TextEditingController place = TextEditingController();
   TextEditingController phoneNumber = TextEditingController();
   String? selectedBloodGroup;
+
   @override
   void initState() {
     super.initState();
@@ -48,6 +48,7 @@ class _UpdatepageState extends State<Updatepage> {
 
   @override
   Widget build(BuildContext context) {
+    final image = Provider.of<Imageprovider>(context);
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -55,10 +56,19 @@ class _UpdatepageState extends State<Updatepage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            InkWell(
-              onTap: () {},
-              child: CircleAvatar(
-                radius: 60,
+            Consumer<Imageprovider>(
+              builder: (context, value, child) => InkWell(
+                onTap: () {
+                  value.pickImages();
+                },
+                child: CircleAvatar(
+                  radius: 60,
+                  backgroundImage: image.imgUrl != null
+                      ? NetworkImage(image.imgUrl!)
+                      : widget.image != null
+                          ? NetworkImage(widget.image!) // Show existing image
+                          : null,
+                ),
               ),
             ),
             TextField(
@@ -95,11 +105,12 @@ class _UpdatepageState extends State<Updatepage> {
               decoration: InputDecoration(labelText: 'Phone number'),
             ),
             Gap(10),
-            Consumer<Userprovider>(
-              builder: (context, value, child) => ElevatedButton(
+            Consumer2<Userprovider, Imageprovider>(
+              builder: (context, value, imag, child) => ElevatedButton(
                   onPressed: () {
                     value.updateData(
                         Usermodel(
+                            image: imag.imagePath,
                             name: name.text,
                             age: age.text,
                             phoneNumber: phoneNumber.text,
