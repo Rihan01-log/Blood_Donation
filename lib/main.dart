@@ -3,6 +3,7 @@ import 'package:blooddonation/controller/userprovider.dart';
 import 'package:blooddonation/view/homescreen.dart';
 import 'package:blooddonation/view/login.dart';
 import 'package:blooddonation/view/sighnulp.dart';
+import 'package:blooddonation/view/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(colorSchemeSeed: Colors.pinkAccent),
       title: 'Blood Donation',
-      home: Homescreen(),
+      home: Splashscreen(),
     );
   }
 }

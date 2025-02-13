@@ -1,7 +1,6 @@
 import 'package:blooddonation/controller/imageprovider.dart';
 import 'package:blooddonation/controller/userprovider.dart';
 import 'package:blooddonation/model/usermodel.dart';
-import 'package:blooddonation/view/viewscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
