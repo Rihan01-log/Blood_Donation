@@ -39,7 +39,7 @@ class _SplashscreenState extends State<Splashscreen> {
     await Future.delayed(Duration(seconds: 3));
 
     final session = Supabase.instance.client.auth.currentSession;
-    if (session != null && session.user != null) {
+    if (session != null) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => Homescreen()),

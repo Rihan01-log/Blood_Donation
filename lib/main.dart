@@ -1,8 +1,5 @@
 import 'package:blooddonation/controller/imageprovider.dart';
 import 'package:blooddonation/controller/userprovider.dart';
-import 'package:blooddonation/view/homescreen.dart';
-import 'package:blooddonation/view/login.dart';
-import 'package:blooddonation/view/sighnulp.dart';
 import 'package:blooddonation/view/splashscreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
