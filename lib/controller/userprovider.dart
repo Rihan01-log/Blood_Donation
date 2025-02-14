@@ -3,8 +3,10 @@ import 'dart:developer';
 import 'package:blooddonation/model/usermodel.dart';
 import 'package:blooddonation/service/userservice.dart';
 import 'package:flutter/foundation.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class Userprovider extends ChangeNotifier {
+  final supbaseAuth =Supabase.instance.client.auth;
   Userservice user = Userservice();
   List<Usermodel> donor = [];
   List bloodGroup = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
@@ -56,4 +58,5 @@ class Userprovider extends ChangeNotifier {
       log('deleting error in provider:$e');
     }
   }
+ 
 }

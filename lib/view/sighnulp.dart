@@ -53,6 +53,7 @@ class Sighnup extends StatelessWidget {
                             log('User registered successfully');
                         
                             Navigator.pushReplacement(
+                                // ignore: use_build_context_synchronously
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => Homescreen(),

@@ -15,7 +15,6 @@ class Userservice {
       throw Exception('error in getting:$e');
     }
   }
-
   Future<void> addtoBase(Usermodel data) async {
     try {
       await bloodDonationData.insert([data.toBase()]);
@@ -42,6 +41,4 @@ class Userservice {
       log('Deleting error frombase:$e');
     }
   }
-
-  
 }

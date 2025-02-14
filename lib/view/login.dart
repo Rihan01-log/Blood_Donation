@@ -11,6 +11,9 @@ class Login extends StatelessWidget {
   const Login({super.key});
 
   @override
+
+
+  @override
   Widget build(BuildContext context) {
     TextEditingController email = TextEditingController();
     TextEditingController password = TextEditingController();
@@ -19,7 +22,7 @@ class Login extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
-            height: 450,
+            height: 380,
             width: double.infinity,
             child: Card(
               shape: RoundedRectangleBorder(
@@ -74,11 +77,23 @@ class Login extends StatelessWidget {
                         style: TextStyle(color: Colors.black),
                       ),
                     ),
-                    ElevatedButton(
-                        onPressed: () {
-                          AuthServices().nativeGoogleSignIn();
-                        },
-                        child: Text("google")),
+                    OutlinedButton.icon(
+                      onPressed: () {
+                        AuthServices().nativeGoogleSignIn().then((value) {
+                          
+                          if (value == 'google auth success') {
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (ctx) => Homescreen()));
+                          }
+                        });
+                      },
+                      icon: Icon(Icons.login),
+                      label: Text("Sign with Google"),
+                      style:
+                          OutlinedButton.styleFrom(minimumSize: Size(180, 40)),
+                    ),
                     Gap(10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -104,4 +119,5 @@ class Login extends StatelessWidget {
       ),
     );
   }
+
 }

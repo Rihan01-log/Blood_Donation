@@ -18,6 +18,7 @@ class _HomescreenState extends State<Homescreen> {
   @override
   void initState() {
     super.initState();
+
     Provider.of<Userprovider>(context, listen: false).getdata();
   }
 
@@ -107,3 +108,5 @@ class _HomescreenState extends State<Homescreen> {
     );
   }
 }
+
+
