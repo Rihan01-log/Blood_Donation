@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:blooddonation/service/auth.dart';
 import 'package:blooddonation/view/homescreen.dart';
 import 'package:blooddonation/view/sighnulp.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class Login extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SizedBox(
-            height: 300,
+            height: 450,
             width: double.infinity,
             child: Card(
               shape: RoundedRectangleBorder(
@@ -73,6 +74,11 @@ class Login extends StatelessWidget {
                         style: TextStyle(color: Colors.black),
                       ),
                     ),
+                    ElevatedButton(
+                        onPressed: () {
+                          AuthServices().nativeGoogleSignIn();
+                        },
+                        child: Text("google")),
                     Gap(10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

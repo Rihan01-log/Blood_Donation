@@ -1,12 +1,16 @@
 import 'package:blooddonation/controller/imageprovider.dart';
 import 'package:blooddonation/controller/userprovider.dart';
+import 'package:blooddonation/firebase_options.dart';
+import 'package:blooddonation/view/login.dart';
 import 'package:blooddonation/view/splashscreen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await Supabase.initialize(
       url: 'https://nejqrbznmfgympxshoos.supabase.co',
       anonKey:
