@@ -13,6 +13,7 @@ class Imageservice {
       final url = supbase.storage.from(bucketName).getPublicUrl(fileName);
       return url;
     } catch (e) {
+      
       log(' error in upload image:$e');
       return null;
     }

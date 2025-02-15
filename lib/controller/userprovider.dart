@@ -11,7 +11,6 @@ class Userprovider extends ChangeNotifier {
   List<Usermodel> donor = [];
   List bloodGroup = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
   String? newvalue;
-
   void serDropdown(String value) async {
     newvalue = value;
     notifyListeners();

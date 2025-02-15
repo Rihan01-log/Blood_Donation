@@ -10,7 +10,7 @@ class Usermodel {
   Usermodel(
       {this.id,required this.name,
       required this.age,
-       this.bloodGroup,
+      required this.bloodGroup,
       required this.phoneNumber,
       required this.place,
       this.image});

@@ -8,13 +8,14 @@ class Userservice {
 
   Future<List<Usermodel>> getFromDatabase() async {
     try {
-      final data = await bloodDonationData.select('*');
+      final data = await bloodDonationData.select();
       log(data.toString());
       return data.map((data) => Usermodel.fromBase(data)).toList();
     } catch (e) {
       throw Exception('error in getting:$e');
     }
   }
+
   Future<void> addtoBase(Usermodel data) async {
     try {
       await bloodDonationData.insert([data.toBase()]);
