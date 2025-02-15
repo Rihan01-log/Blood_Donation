@@ -11,8 +11,6 @@ class Login extends StatelessWidget {
   const Login({super.key});
 
   @override
-
-
   @override
   Widget build(BuildContext context) {
     TextEditingController email = TextEditingController();
@@ -80,7 +78,6 @@ class Login extends StatelessWidget {
                     OutlinedButton.icon(
                       onPressed: () {
                         AuthServices().nativeGoogleSignIn().then((value) {
-                          
                           if (value == 'google auth success') {
                             Navigator.pushReplacement(
                                 context,
@@ -119,5 +116,4 @@ class Login extends StatelessWidget {
       ),
     );
   }
-
 }

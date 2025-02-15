@@ -34,8 +34,8 @@ class _AddscreenState extends State<Addscreen> {
               child: CircleAvatar(
                 radius: 60,
                 backgroundImage:
-                    img.imgUrl != null ? NetworkImage(img.imgUrl!) : null,
-                child: img.imgUrl == null
+                    img.imagePath != null ? NetworkImage(img.imagePath!) : null,
+                child: img.imagePath == null
                     ? Icon(
                         Icons.person,
                         color: Colors.grey,

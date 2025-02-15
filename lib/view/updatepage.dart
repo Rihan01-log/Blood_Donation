@@ -63,8 +63,8 @@ class _UpdatepageState extends State<Updatepage> {
                 },
                 child: CircleAvatar(
                   radius: 60,
-                  backgroundImage: image.imgUrl != null
-                      ? NetworkImage(image.imgUrl!)
+                  backgroundImage: image.imagePath != null
+                      ? NetworkImage(image.imagePath!)
                       : widget.image != null
                           ? NetworkImage(widget.image!) // Show existing image
                           : null,

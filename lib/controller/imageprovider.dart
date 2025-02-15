@@ -8,7 +8,6 @@ import 'package:image_picker/image_picker.dart';
 class Imageprovider extends ChangeNotifier {
   Imageservice imageService = Imageservice();
   File? image;
-  String? imgUrl;
   String? imagePath;
   ImagePicker pickimage = ImagePicker();
   Future<void> pickImages() async {
@@ -23,8 +22,7 @@ class Imageprovider extends ChangeNotifier {
   Future<void> addImage() async {
     try {
       imagePath = await imageService.uploadImage(image!);
-      imgUrl = imagePath;
-      log('image url getted: $imgUrl');
+      log('image url getted: $imagePath');
     } catch (e) {
       log('image url not getting from supabase:$e');
     } finally {
