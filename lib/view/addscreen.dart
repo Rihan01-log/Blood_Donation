@@ -97,6 +97,7 @@ class _AddscreenState extends State<Addscreen> {
                       ScaffoldMessenger.of(context)
                           .showSnackBar(SnackBar(content: Text('Donor Added')));
                       Navigator.pop(context);
+                      
                     },
                     child: Text('Submit'),
                   ),
