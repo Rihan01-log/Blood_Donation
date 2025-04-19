@@ -57,55 +57,54 @@ class _HomescreenState extends State<Homescreen> {
         child: Icon(Icons.add),
       ),
       body: Consumer2<Userprovider, Imageprovider>(
-          builder: (context, value, img, child) => Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListView.builder(
-                    itemCount: value.donor.length,
-                    itemBuilder: (context, index) {
-                      final data = value.donor[index];
-                      final id = data.id;
-                      return Card(
-                        child: ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage:
-                                NetworkImage(data.image ?? 'unknown'),
-                          ),
-                          title: Text(data.name!),
-                          subtitle: Text(data.bloodGroup ?? 'unknown'),
-                          trailing: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              IconButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => Updatepage(
-                                              image: data.image,
-                                              id: id,
-                                              name: data.name,
-                                              age: data.age,
-                                              bloodGroup: data.bloodGroup,
-                                              place: data.place,
-                                              phoneNumber: data.phoneNumber),
-                                        ));
-                                  },
-                                  icon: Icon(Icons.edit)),
-                              IconButton(
-                                  onPressed: () {
-                                    value.deletingData(data.id!);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                            content:
-                                                Text('Donor data deleted')));
-                                  },
-                                  icon: Icon(Icons.delete))
-                            ],
-                          ),
-                        ),
-                      );
-                    }),
-              )),
+        builder: (context, value, img, child) => Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView.builder(
+              itemCount: value.donor.length,
+              itemBuilder: (context, index) {
+                final data = value.donor[index];
+                final id = data.id;
+                return Card(
+                  child: ListTile(
+                    leading: CircleAvatar(
+                      backgroundImage: NetworkImage(data.image ?? 'unknown'),
+                    ),
+                    title: Text(data.name!),
+                    subtitle: Text(data.bloodGroup ?? 'unknown'),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => Updatepage(
+                                        image: data.image,
+                                        id: id,
+                                        name: data.name,
+                                        age: data.age,
+                                        bloodGroup: data.bloodGroup,
+                                        place: data.place,
+                                        phoneNumber: data.phoneNumber),
+                                  ));
+                            },
+                            icon: Icon(Icons.edit)),
+                        IconButton(
+                            onPressed: () {
+                              value.deletingData(data.id!);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text('Donor data deleted')));
+                            },
+                            icon: Icon(Icons.delete))
+                      ],
+                    ),
+                  ),
+                );
+              }),
+        ),
+      ),
     );
   }
 }
